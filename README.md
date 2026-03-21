@@ -13,7 +13,8 @@ sudo apt update && sudo apt install -y \
   texlive-fonts-recommended \
   texlive-font-utils \
   texlive-lang-spanish \
-  cm-super ```
+  cm-super
+```
 
 ### 2. Instalación de pluggins VSCode
 Instala desde VS Code los plugins:
