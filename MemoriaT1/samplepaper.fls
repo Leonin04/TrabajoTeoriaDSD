@@ -1,9 +1,9 @@
-PWD /home/david/4º/SegundoCuatri/DSD/TrabajoTeoriaDSD/MemoriaT1
+PWD /home/jxlig0d/Escritorio/DSD/trabajo_comun/TrabajoTeoriaDSD/MemoriaT1
 INPUT /etc/texmf/web2c/texmf.cnf
 INPUT /usr/share/texmf/web2c/texmf.cnf
 INPUT /usr/share/texlive/texmf-dist/web2c/texmf.cnf
 INPUT /var/lib/texmf/web2c/pdftex/pdflatex.fmt
-INPUT /home/david/4º/SegundoCuatri/DSD/TrabajoTeoriaDSD/MemoriaT1/samplepaper.tex
+INPUT /home/jxlig0d/Escritorio/DSD/trabajo_comun/TrabajoTeoriaDSD/MemoriaT1/samplepaper.tex
 OUTPUT samplepaper.log
 INPUT ./llncs.cls
 INPUT llncs.cls
@@ -74,6 +74,10 @@ INPUT /usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/tcrm0900.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecrm1200.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbx1200.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbx1000.tfm
+OUTPUT samplepaper.pdf
+INPUT /var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map
+INPUT /usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc
+INPUT /usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecti1000.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmr9.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmr6.tfm
@@ -92,11 +96,7 @@ INPUT ./fig1-eps-converted-to.pdf
 INPUT ./fig1.eps
 INPUT ./fig1-eps-converted-to.pdf
 INPUT ./fig1-eps-converted-to.pdf
-OUTPUT samplepaper.pdf
 INPUT ./fig1-eps-converted-to.pdf
-INPUT /var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map
-INPUT /usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc
-INPUT /usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecrm0600.tfm
 INPUT samplepaper.aux
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb
