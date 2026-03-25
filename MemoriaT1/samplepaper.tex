@@ -92,19 +92,18 @@ Como hemos mencionado anteriormente, la integración de la IA Generativa en sist
 \end{itemize}
 
 \section{Inconvenientes del uso de esta tecnología (Rol: Crítico)}
+A pesar de las promesas de eficiencia y escalabilidad, la implementación de IA Generativa en sistemas distribuidos introduce desafíos críticos que pueden comprometer la viabilidad del sistema:
 
-\section{Ejemplos del uso de esta tecnología en la actualidad (Rol: Proporcionador de ejemplos)}
-Para ejemplificar como se está utilizando la IA Generativa en sistemas distribuidos en la actualidad, podemos destacar varios casos reales que ilustran su impacto en diferentes sectores:
 \begin{itemize}
-    \item \textbf{T-Systems:} Cabe matizar la empresa objeto del estudio.  Esta plataforma europea permite a industrias reguladas desplegar LLMs de forma segura. Ejemplos incluyen asistentes de notas para el sector público que automatizan la creación de documentos administrativos y asistentes inteligentes en el sector salud para organizar información clínica en tiempo real. \newline \newline Esta empresa pone en manifiesto alguna de las ventajas que hemos mencionado anteriormente, por ejemplo el \textbf{Aprendizaje Federado}, permitiendo a distintas entidades colaborar sin compartir datos sensibles.
+    \item \textbf{El límite de la latencia y el ancho de banda:} Aunque se promociona la inmediatez, el rendimiento está intrínsecamente limitado por el retardo de la red. En modelos masivos, la necesidad de sincronizar billones de parámetros entre miles de GPUs genera un overhead de comunicación; si la latencia de red es alta, añadir más recursos (escalabilidad horizontal) puede incluso ralentizar el sistema en lugar de acelerarlo.
     \newline
-    \item \textbf{Arquitecturas RAG:} Muchas empresas integran LLMs con sus propias bases de conocimiento distribuidas. Esto permite a los chatbots empresariales consultar documentos internos de forma segura, ofreciendo al empleado una \textbf{transparencia de acceso total}: el usuario siente que consulta a un experto local cuando el sistema está recuperando información de múltiples silos de datos distribuidos.
+    \item \textbf{Desafíos de Integridad y el "Nodo Malicioso":} En entornos como el Aprendizaje Federado o sistemas abiertos, la seguridad es una preocupación mayor. Según el modelo de seguridad de Coulouris , un enemigo puede inyectar mensajes espurios. En IA, esto se traduce en ataques de envenenamiento de datos, donde un solo nodo corrupto puede enviar actualizaciones matemáticas falsas que degraden la precisión de todo el modelo global sin ser detectado.
     \newline
-    \item \textbf{Orquestación con Kubernetes y Ray:} En el ámbito del desarrollo, se utilizan pilas de software abierto que combinan Kubernetes para la gestión de contenedores y Ray para el cómputo distribuido. Esto permite ejecutar tareas complejas de procesamiento de vídeo y razonamiento a gran escala de forma eficiente. \newline \newline Con esto ejemplificamos la \textbf{escalabilidad horizontal extrema}, añadiendo nodos bajo demanda para manejar picos de trabajo sin necesidad de reescribir el código de IA.
+    \item \textbf{Complejidad y el Teorema CAP:} La integración de IA debe lidiar con el conflicto entre Consistencia y Disponibilidad. Para que la IA funcione como un único cerebro, todos los nodos deben estar perfectamente sincronizados (Consistencia), pero mantener esto en un sistema a gran escala ante posibles fallos de red es matemáticamente imposible de lograr de forma perfecta simultáneamente, según el Teorema CAP.
     \newline
-    \item \textbf{Amazon Bedrock y Google Cloud:}  Estos servicios ofrecen acceso a modelos fundacionales (como Claude o Titan) mediante APIs distribuidas, permitiendo a las empresas crear avatares de ventas virtuales o sistemas de automatización de flujos de trabajo sin gestionar la infraestructura física. \newline \newline Estas garantizan \textbf{alta disponibilidad y transparencia de ubicación}, permitiendo que las empresas automaticen flujos de trabajo globales sin tener que gestionar ni una sola GPU física
+    \item \textbf{Heterogeneidad:} Los sistemas distribuidos reales no son uniformes. Coulouris destaca la heterogeneidad como un desafío; en una red de hospitales o centros educativos, si un solo servidor es más antiguo o lento, puede retrasar el entrenamiento o la respuesta de todo el sistema distribuido, anulando las ventajas de la computación paralela.
     \newline
-    \item \textbf{Despliegue de Tutores Virtuales con vLLM:} Ejemplificando \textbf{PagedAttention}, las instituciones educativas pueden servir modelos LLM a miles de alumnos concurrentes. La tecnología de vLLM permite que instrucciones comunes (ej: las instrucciones de una asignatura) se almacenen una sola vez en la memoria, optimizando el hardware disponible.
+    \item \textbf{Dificultad en la Transparencia de Fallos:} Aunque se busca la ilusión de que todo ocurre en una sola máquina, ocultar la complejidad tiene un precio. Cuando un componente falla, diagnosticar si el error proviene del hardware de lectura, de la red o del nodo de generación es extremadamente complejo, aumentando los costes de mantenimiento operativo.
 \end{itemize}
 
 \section{Dudas surgidas del estudio (Rol: Preguntador)}
@@ -151,6 +150,12 @@ Author, F.: Performance Modeling and Workload Analysis of Distributed Large Lang
 
 \bibitem{ref_url5}
 T-Systems: AI Foundation Services, \url{https://www.t-systems.com/de/en/artificial-intelligence/solutions/ai-foundation-services}, last accessed 2026/03/24
+
+\bibitem{ref_coulouris1}
+Coulouris, G., Dollimore, J., Kindberg, T., Blair, G.: Distributed Systems: Concepts and Design. 5th edn. Pearson Education, Boston (2012)
+
+\bibitem{ref_gilbert1}
+Gilbert, S., Lynch, N.: Brewer's conjecture and the feasibility of consistent, available, partition-tolerant web services. ACM SIGACT News \textbf{33}(2), 51--59 (2002)
 
 \end{thebibliography}
 
