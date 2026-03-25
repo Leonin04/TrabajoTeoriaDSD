@@ -1,7 +1,7 @@
 # Fdb version 4
-["pdflatex"] 1774435914.0824 "/home/david/4º/SegundoCuatri/DSD/TrabajoTeoriaDSD/MemoriaT1/samplepaper.tex" "samplepaper.pdf" "samplepaper" 1774435914.95726 0
+["pdflatex"] 1774435996.31539 "/home/david/4º/SegundoCuatri/DSD/TrabajoTeoriaDSD/MemoriaT1/samplepaper.tex" "samplepaper.pdf" "samplepaper" 1774435997.40451 0
   "/etc/texmf/web2c/texmf.cnf" 1744047975.02786 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/david/4º/SegundoCuatri/DSD/TrabajoTeoriaDSD/MemoriaT1/samplepaper.tex" 1774435912.68524 16318 76b4ae0ff328ec04f5c00c774f08120a ""
+  "/home/david/4º/SegundoCuatri/DSD/TrabajoTeoriaDSD/MemoriaT1/samplepaper.tex" 1774435995.84591 16273 f04b152b2db9a313a776f6ce64a986da ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbx0900.tfm" 1136768653 3584 1a7de6c99457381c64abc1a7c545505f ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbx1000.tfm" 1136768653 3584 2d666ecf6d466d8b007246bc2f94d9da ""
@@ -80,9 +80,9 @@
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1773509953.92732 5312232 f3296911be9cc021788f3f879cf0a47d ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1768667570 6822872 9d0baf2a8c563581ffd0866e5f9477ed ""
   "llncs.cls" 1774120961.61729 43402 5fb5a2dc40571aa40f3d199c00cbb986 ""
-  "samplepaper.aux" 1774435914.81891 2066 53d0c205b08588f9a83b9c9a31b8b321 "pdflatex"
-  "samplepaper.out" 1774435914.82285 347 0d8c7eeeec175490fa1df6c6a7eda8b4 "pdflatex"
-  "samplepaper.tex" 1774435912.68524 16318 76b4ae0ff328ec04f5c00c774f08120a ""
+  "samplepaper.aux" 1774435997.22756 2066 53d0c205b08588f9a83b9c9a31b8b321 "pdflatex"
+  "samplepaper.out" 1774435997.22756 347 0d8c7eeeec175490fa1df6c6a7eda8b4 "pdflatex"
+  "samplepaper.tex" 1774435995.84591 16273 f04b152b2db9a313a776f6ce64a986da ""
   (generated)
   "samplepaper.aux"
   "samplepaper.log"
