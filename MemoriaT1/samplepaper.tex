@@ -11,6 +11,8 @@
 %
 \usepackage{graphicx}
 \usepackage{epstopdf}
+\usepackage{url}
+\usepackage{hyperref}
 % Used for displaying a sample figure. If possible, figure files should
 % be included in EPS format.
 %
@@ -22,7 +24,7 @@
 %
 \begin{document}
 %
-\title{Contribution Title}
+\title{Integración de la IA Generativa en Sistemas Distribuidos}
 %
 %\titlerunning{Abbreviated paper title}
 % If the paper title is too long for the running head, you can set
@@ -34,7 +36,7 @@ Minerva Cebrián Marín\inst{1} \and
 Miguel Ángel Luque Gómez\inst{1} \and 
 Pablo Hernández Ibáñez\inst{1}}
 %
-\authorrunning{F. Author et al.}
+\authorrunning{D. Bacas, M.A. Luque, J. Carrión, M. Cebrián, P. Hernández}
 % First names are abbreviated in the running head.
 % If there are more than two authors, 'et al.' is used.
 %
@@ -43,149 +45,103 @@ Pablo Hernández Ibáñez\inst{1}}
 \maketitle              % typeset the header of the contribution
 %
 \begin{abstract}
-The abstract should briefly summarize the contents of the paper in
-150--250 words.
+Este trabajo analiza la integración de la Inteligencia Artificial Generativa (GenAI) en arquitecturas de sistemas distribuidos, fundamentándose en los principios de diseño de Coulouris et al.. Debido al tamaño masivo de los modelos de lenguaje (LLMs), la ejecución en dispositivos individuales resulta inviable, exigiendo soluciones distribuidas para superar el "muro de la memoria". Se exploran ventajas críticas como la escalabilidad horizontal extrema y la eficiencia mediante algoritmos de gestión de memoria como PagedAttention. Asimismo, se examinan inconvenientes técnicos, incluyendo la latencia de red y el impacto de los nodos lentos o stragglers que pueden ralentizar el entrenamiento en un 42.5\%. El estudio detalla aplicaciones industriales reales a través de plataformas como T-Systems y orquestadores como Kubernetes y Ray. Finalmente, se proponen cuestiones técnicas para el seminario académico del 26 de marzo, abordando la tolerancia a fallos y la soberanía del dato en entornos federados. Este marco proporciona una visión técnica y ética alineada con las directrices proporcionadas para la asignatura de Diseño de Sistemas Distribuidos de la Universidad de Granada.
 
-\keywords{First keyword  \and Second keyword \and Another keyword.}
+\keywords{GenAI \and Sistemas Distribuidos \and vLLM \and Chatbots \and Escalabilidad.}
 \end{abstract}
 %
 %
 %
-\section{First Section}
+\section{Introducción y motivación del trabajo}
 
-\subsection{Utilidad y Ventajas (Rol: Proponente)}
-La integración de la IA Generativa en sistemas distribuidos no es un simple capricho técnico, sino una necesidad imperativa para hacer que esta tecnología sea verdaderamente útil, escalable y segura en aplicaciones reales. A continuación, se detallan las principales ventajas prácticas de esta convergencia:
+La integración de la IA Generativa en los sistemas distribuidos representa uno de los retos más significativos de la ingeniería informática actual. Tradicionalmente, los sistemas distribuidos se enfocaban en la compartición de recursos y la transparencia de acceso; sin embargo, la escala de los modelos actuales (que alcanzan trillones de parámetros) ha hecho que la computación en un solo dispositivo sea técnica y económicamente inviable.
+
+\subsection{Motivación técnica}
+La principal motivación de este estudio reside en el fenómeno conocido como el "muro de la memoria". Mientras que el rendimiento de cómputo de las GPUs ha escalado rápidamente, el ancho de banda y la capacidad de la memoria no han seguido el mismo ritmo, convirtiendo a la inferencia de LLMs en una tarea limitada por la memoria (memory-bound). Esto obliga a fragmentar los modelos a través de múltiples nodos utilizando técnicas de paralelismo de tensores, tubería y expertos para poder ejecutarlos en tiempo real con latencias aceptables para aplicaciones interactivas.
+
+\subsection{Motivación académica}
+Desde una perspectiva académica, este trabajo se motiva por la necesidad de formar equipos analíticos capaces de gestionar la complejidad de estas arquitecturas bajo estrictos estándares éticos. El auge de la "Edge AI" (IA en el borde) añade una capa adicional de relevancia, ya que la sociedad demanda respuestas instantáneas y mayor privacidad, lo que solo puede lograrse mediante una colaboración eficiente entre dispositivos de usuario y servidores en la nube sin exponer datos sensibles. La soberanía digital, especialmente en el contexto europeo, impulsa la investigación hacia soluciones abiertas y transparentes que no dependan exclusivamente de proveedores propietarios.
+
+\subsection{Roles de los participantes}
+En este trabajo, cada miembro del equipo asume un rol específico para garantizar una visión integral del tema:
+\begin{itemize}
+    \item \textbf{Proponente (Julian Carrión Tovar):} Encargado de argumentar las ventajas y la utilidad de integrar GenAI en sistemas distribuidos, destacando casos de uso reales y beneficios.
+    \item \textbf{Crítico (Minerva Cebrián Marín):} Responsable de identificar y analizar los inconvenientes y riesgos asociados con la implementación de GenAI en entornos distribuidos.
+    \item \textbf{Proporcionador de ejemplos (David Bacas Posadas):} Encargado de recopilar y presentar casos de uso reales que demuestren la aplicación práctica de las soluciones propuestas.
+    \item \textbf{Preguntador (Miguel Ángel Luque Gómez):} Responsable de formular preguntas técnicas y éticas que surjan del estudio, fomentando el debate y la reflexión en el seminario académico.
+    \item \textbf{Resumidor (Pablo Hernández Ibáñez):} Encargado de sintetizar los hallazgos del trabajo y presentar una conclusión clara y concisa que refleje las principales ideas discutidas.
+\end{itemize}
+
+\section{Utilidad y Ventajas (Rol: Proponente)}
+Como hemos mencionado anteriormente, la integración de la IA Generativa en sistemas distribuidos no es un simple capricho técnico, sino una necesidad imperativa para hacer que esta tecnología sea verdaderamente útil, escalable y segura en aplicaciones reales. A continuación, se detallan las principales ventajas prácticas de esta convergencia:
 
 \begin{itemize}
     \item \textbf{Escalabilidad horizontal extrema:} Si un problema es demasiado grande, el sistema permite añadir más recursos en red para superarlo. Esto resulta evidente al observar modelos masivos como GPT-4, los cuales son tan gigantescos que no caben en la memoria de un solo dispositivo, pero pueden ejecutarse sin problema al conectar miles de tarjetas gráficas para que trabajen coordinadas como un único gran cerebro.
-    
+    \newline
     \item \textbf{Eficiencia y optimización de recursos (PagedAttention):} Las arquitecturas modernas gestionan la memoria de forma dinámica para no desperdiciar capacidad. Podemos imaginar una situación donde nuestra universidad lanza un tutor virtual y miles de estudiantes se conectan simultáneamente en época de exámenes; gracias a esta compartición inteligente de la memoria caché, los servidores no colapsan y todos los alumnos reciben su respuesta al instante.
-    
+    \newline
     \item \textbf{Privacidad y soberanía de datos (Aprendizaje Federado):} Es posible entrenar modelos de IA sin que la información confidencial abandone su lugar de origen. Un escenario real de gran utilidad sería el de varios hospitales andaluces colaborando para entrenar un modelo médico; en lugar de enviar historiales a una base de datos central, la IA viaja a cada centro, aprende localmente y solo comparte el conocimiento matemático resultante, manteniendo la privacidad intacta.
-    
+    \newline
     \item \textbf{Transparencia de acceso y ubicación:} El sistema distribuye la carga de trabajo ocultando toda la complejidad subyacente al usuario. Así, un investigador puede ejecutar una petición compleja desde su portátil y la infraestructura repartirá automáticamente el esfuerzo entre decenas de servidores lejanos, dándole la cómoda ilusión de que todo el procesamiento está ocurriendo mágicamente dentro de su propia máquina.
-    
+    \newline
     \item \textbf{Respuestas inmediatas sin latencia (Edge AI):} Al acercar el cómputo al extremo de la red, se eliminan los tiempos de espera asociados a la transmisión de datos hacia la nube. Resulta fácil comprender la importancia de esto si pensamos en un vehículo autónomo, donde enviar el vídeo de la cámara a un centro de datos lejano para decidir si debe frenar introduciría un retraso letal, problema que se resuelve procesando esa inferencia directamente en el hardware del propio coche.
-    
+    \newline
     \item \textbf{Alta disponibilidad y tolerancia a fallos:} El diseño distribuido garantiza que los servicios críticos nunca dejen de funcionar. De este modo, si dependemos de un asistente de IA para gestionar las operaciones de una empresa y un nodo físico sufre un corte eléctrico, el balanceador de carga transfiere inmediatamente el trabajo a otro servidor activo, de forma tan rápida que el usuario final no experimenta ninguna interrupción en el servicio.
-    
+    \newline
     \item \textbf{Desagregación estratégica de tareas:} Este enfoque permite asignar cada fase computacional al hardware que mejor sepa realizarla. Para visualizarlo, cuando un usuario pide analizar un documento muy extenso, el sistema es capaz de enviar la fase inicial de lectura intensiva a los servidores con mayor fuerza bruta, mientras que la posterior generación del texto se delega a máquinas especializadas en ancho de banda, operando en conjunto como una cadena de montaje altamente rentable.
 \end{itemize}
 
-\subsection{A Subsection Sample}
-Please note that the first paragraph of a section or subsection is
-not indented. The first paragraph that follows a table, figure,
-equation etc. does not need an indent, either.
+\section{Inconvenientes del uso de esta tecnología (Rol: Crítico)}
 
-Subsequent paragraphs, however, are indented.
+\section{Ejemplos del uso de esta tecnología en la actualidad (Rol: Proporcionador de ejemplos)}
+Para ejemplificar como se está utilizando la IA Generativa en sistemas distribuidos en la actualidad, podemos destacar varios casos reales que ilustran su impacto en diferentes sectores:
+\begin{itemize}
+    \item \textbf{T-Systems:} Cabe matizar la empresa objeto del estudio.  Esta plataforma europea permite a industrias reguladas desplegar LLMs de forma segura. Ejemplos incluyen asistentes de notas para el sector público que automatizan la creación de documentos administrativos y asistentes inteligentes en el sector salud para organizar información clínica en tiempo real. \newline \newline Esta empresa pone en manifiesto alguna de las ventajas que hemos mencionado anteriormente, por ejemplo el \textbf{Aprendizaje Federado}, permitiendo a distintas entidades colaborar sin compartir datos sensibles.
+    \newline
+    \item \textbf{Arquitecturas RAG:} Muchas empresas integran LLMs con sus propias bases de conocimiento distribuidas. Esto permite a los chatbots empresariales consultar documentos internos de forma segura, ofreciendo al empleado una \textbf{transparencia de acceso total}: el usuario siente que consulta a un experto local cuando el sistema está recuperando información de múltiples silos de datos distribuidos.
+    \newline
+    \item \textbf{Orquestación con Kubernetes y Ray:} En el ámbito del desarrollo, se utilizan pilas de software abierto que combinan Kubernetes para la gestión de contenedores y Ray para el cómputo distribuido. Esto permite ejecutar tareas complejas de procesamiento de vídeo y razonamiento a gran escala de forma eficiente. \newline \newline Con esto ejemplificamos la \textbf{escalabilidad horizontal extrema}, añadiendo nodos bajo demanda para manejar picos de trabajo sin necesidad de reescribir el código de IA.
+    \newline
+    \item \textbf{Amazon Bedrock y Google Cloud:}  Estos servicios ofrecen acceso a modelos fundacionales (como Claude o Titan) mediante APIs distribuidas, permitiendo a las empresas crear avatares de ventas virtuales o sistemas de automatización de flujos de trabajo sin gestionar la infraestructura física. \newline \newline Estas garantizan \textbf{alta disponibilidad y transparencia de ubicación}, permitiendo que las empresas automaticen flujos de trabajo globales sin tener que gestionar ni una sola GPU física
+    \newline
+    \item \textbf{Despliegue de Tutores Virtuales con vLLM:} Ejemplificando \textbf{PagedAttention}, las instituciones educativas pueden servir modelos LLM a miles de alumnos concurrentes. La tecnología de vLLM permite que instrucciones comunes (ej: las instrucciones de una asignatura) se almacenen una sola vez en la memoria, optimizando el hardware disponible.
+\end{itemize}
 
-\subsubsection{Sample Heading (Third Level)} Only two levels of
-headings should be numbered. Lower level headings remain unnumbered;
-they are formatted as run-in headings.
+\section{Dudas surgidas del estudio (Rol: Preguntador)}
 
-\paragraph{Sample Heading (Fourth Level)}
-The contribution should contain no more than four levels of
-headings. Table~\ref{tab1} gives a summary of all heading levels.
-
-\begin{table}
-\caption{Table captions should be placed above the
-tables.}\label{tab1}
-\begin{tabular}{|l|l|l|}
-\hline
-Heading level &  Example & Font size and style\\
-\hline
-Title (centered) &  {\Large\bfseries Lecture Notes} & 14 point, bold\\
-1st-level heading &  {\large\bfseries 1 Introduction} & 12 point, bold\\
-2nd-level heading & {\bfseries 2.1 Printing Area} & 10 point, bold\\
-3rd-level heading & {\bfseries Run-in Heading in Bold.} Text follows & 10 point, bold\\
-4th-level heading & {\itshape Lowest Level Heading.} Text follows & 10 point, italic\\
-\hline
-\end{tabular}
-\end{table}
-
-
-\noindent Displayed equations are centered and set on a separate
-line.
-\begin{equation}
-x + y = z
-\end{equation}
-Please try to avoid rasterized images for line-art diagrams and
-schemas. Whenever possible, use vector graphics instead (see
-Fig.~\ref{fig1}).
-
-\begin{figure}
-\includegraphics[width=\textwidth]{fig1.eps}
-\caption{A figure caption is always placed below the illustration.
-Please note that short captions are centered, while long ones are
-justified by the macro package automatically.} \label{fig1}
-\end{figure}
-
-\begin{theorem}
-This is a sample theorem. The run-in heading is set in bold, while
-the following text appears in italics. Definitions, lemmas,
-propositions, and corollaries are styled the same way.
-\end{theorem}
-%
-% the environments 'definition', 'lemma', 'proposition', 'corollary',
-% 'remark', and 'example' are defined in the LLNCS documentclass as well.
-%
-\begin{proof}
-Proofs, examples, and remarks have the initial word in italics,
-while the following text appears in normal font.
-\end{proof}
-For citations of references, we prefer the use of square brackets
-and consecutive numbers. Citations using labels or the author/year
-convention are also acceptable. The following bibliography provides
-a sample reference list with entries for journal
-articles~\cite{ref_article1}, an LNCS chapter~\cite{ref_lncs1}, a
-book~\cite{ref_book1}, proceedings without editors~\cite{ref_proc1},
-and a homepage~\cite{ref_url1}. Multiple citations are grouped
-\cite{ref_article1,ref_lncs1,ref_book1},
-\cite{ref_article1,ref_book1,ref_proc1,ref_url1}.
-
-\begin{credits}
-\subsubsection{\ackname} A bold run-in heading in small font size at the end of the paper is
-used for general acknowledgments, for example: This study was funded
-by X (grant number Y).
-
-\subsubsection{\discintname}
-It is now necessary to declare any competing interests or to specifically
-state that the authors have no competing interests. Please place the
-statement with a bold run-in heading in small font size beneath the
-(optional) acknowledgments\footnote{If EquinOCS, our proceedings submission
-system, is used, then the disclaimer can be provided directly in the system.},
-for example: The authors have no competing interests to declare that are
-relevant to the content of this article. Or: Author A has received research
-grants from Company W. Author B has received a speaker honorarium from
-Company X and owns stock in Company Y. Author C is a member of committee Z.
-\end{credits}
-%
-% ---- Bibliography ----
-%
-% BibTeX users should specify bibliography style 'splncs04'.
-% References will then be sorted and formatted in the correct style.
-%
-% \bibliographystyle{splncs04}
-% \bibliography{mybibliography}
-%
-\begin{thebibliography}{8}
-\bibitem{ref_article1}
-Author, F.: Article title. Journal \textbf{2}(5), 99--110 (2016)
-
-\bibitem{ref_lncs1}
-Author, F., Author, S.: Title of a proceedings paper. In: Editor,
-F., Editor, S. (eds.) CONFERENCE 2016, LNCS, vol. 9999, pp. 1--13.
-Springer, Heidelberg (2016). \doi{10.10007/1234567890}
+\section{Conclusión (Rol: Resumidor)}
+\begin{thebibliography}{9}
 
 \bibitem{ref_book1}
-Author, F., Author, S., Author, T.: Book title. 2nd edn. Publisher,
-Location (1999)
+Coulouris, G., Dollimore, J., Kindberg, T., Blair, G.: Distributed Systems: Concepts and Design. 5th edn. Addison-Wesley, Boston (2011)
 
-\bibitem{ref_proc1}
-Author, A.-B.: Contribution title. In: 9th International Proceedings
-on Proceedings, pp. 1--2. Publisher, Location (2010)
+\bibitem{ref_article1}
+Kwon, W., et al.\: vLLM\: An Efficient Inference Engine for Large Language Models. Technical Report No. UCB/EECS-2025-192, University of California, Berkeley (2025)
+
+\bibitem{ref_article2}
+Author, F.: Serving LLM in Distributed GPU Cluster With Fine-Grain Pipeline Constraints. IEEE Transactions on Services Computing \textbf{18}(5), (2025). \url{https://www.computer.org/csdl/journal/sc/2025/05/11143904/29yj42wwNwY}, last accessed 2026/03/24
 
 \bibitem{ref_url1}
-LNCS Homepage, \url{http://www.springer.com/lncs}, last accessed 2023/10/25
+Red Hat Developer: Why vLLM is the best choice for AI inference today, \url{https://developers.redhat.com/articles/2025/10/30/why-vllm-best-choice-ai-inference-today}, last accessed 2026/03/24
+
+\bibitem{ref_url2}
+Meta Intelligence: Private LLM Deployment Guide: Llama + vLLM + TensorRT — Self-Hosted Architecture, \url{https://www.meta-intelligence.tech/en/insight-llm-deployment}, last accessed 2026/03/24
+
+\bibitem{ref_proc1}
+Author, A.-B.: Federated Attention: A Distributed Paradigm for Collaborative LLM Inference over Edge Networks. In: ResearchGate (2025). \url{https://www.researchgate.net/publication/397279786}, last accessed 2026/03/24
+
+\bibitem{ref_url3}
+Solo.io: Deep Dive into llm-d and Distributed Inference, \url{https://www.solo.io/blog/deep-dive-into-llm-d-and-distributed-inference}, last accessed 2026/03/24
+
+\bibitem{ref_url4}
+Hugging Face: Daily Papers \- Hybrid Serving Architecture, \url{https://huggingface.co/papers?q=hybrid%20serving%20architecture}, last accessed 2026/03/24
+
+\bibitem{ref_proc2}
+Author, F.: Performance Modeling and Workload Analysis of Distributed Large Language Model Training and Inference. In: ResearchGate (2025). \url{https://www.researchgate.net/publication/387919319}, last accessed 2026/03/24
+
+\bibitem{ref_url5}
+T-Systems: AI Foundation Services, \url{https://www.t-systems.com/de/en/artificial-intelligence/solutions/ai-foundation-services}, last accessed 2026/03/24
+
 \end{thebibliography}
+
 \end{document}
