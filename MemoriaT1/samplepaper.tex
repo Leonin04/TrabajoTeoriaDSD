@@ -107,6 +107,20 @@ A pesar de las promesas de eficiencia y escalabilidad, la implementación de IA 
     \item \textbf{Dificultad en la Transparencia de Fallos:} Aunque se busca la ilusión de que todo ocurre en una sola máquina, ocultar la complejidad tiene un precio. Cuando un componente falla, diagnosticar si el error proviene del hardware de lectura, de la red o del nodo de generación es extremadamente complejo, aumentando los costes de mantenimiento operativo.
 \end{itemize}
 
+\section{Ejemplos de uso reales (Rol: Proporcionador de ejemplos)}
+Para ejemplificar como se está utilizando la IA Generativa en sistemas distribuidos en la actualidad, podemos destacar varios casos reales que ilustran su impacto en diferentes sectores:
+\begin{itemize}
+    \item \textbf{T-Systems:} Cabe matizar la empresa objeto del estudio.  Esta plataforma europea permite a industrias reguladas desplegar LLMs de forma segura. Ejemplos incluyen asistentes de notas para el sector público que automatizan la creación de documentos administrativos y asistentes inteligentes en el sector salud para organizar información clínica en tiempo real. \newline \newline Esta empresa pone en manifiesto alguna de las ventajas que hemos mencionado anteriormente, por ejemplo el \textbf{Aprendizaje Federado}, permitiendo a distintas entidades colaborar sin compartir datos sensibles.
+    \newline
+    \item \textbf{Arquitecturas RAG:} Muchas empresas integran LLMs con sus propias bases de conocimiento distribuidas. Esto permite a los chatbots empresariales consultar documentos internos de forma segura, ofreciendo al empleado una \textbf{transparencia de acceso total}: el usuario siente que consulta a un experto local cuando el sistema está recuperando información de múltiples silos de datos distribuidos.
+    \newline
+    \item \textbf{Orquestación con Kubernetes y Ray:} En el ámbito del desarrollo, se utilizan pilas de software abierto que combinan Kubernetes para la gestión de contenedores y Ray para el cómputo distribuido. Esto permite ejecutar tareas complejas de procesamiento de vídeo y razonamiento a gran escala de forma eficiente. \newline \newline Con esto ejemplificamos la \textbf{escalabilidad horizontal extrema}, añadiendo nodos bajo demanda para manejar picos de trabajo sin necesidad de reescribir el código de IA.
+    \newline
+    \item \textbf{Amazon Bedrock y Google Cloud:}  Estos servicios ofrecen acceso a modelos fundacionales (como Claude o Titan) mediante APIs distribuidas, permitiendo a las empresas crear avatares de ventas virtuales o sistemas de automatización de flujos de trabajo sin gestionar la infraestructura física. \newline \newline Estas garantizan \textbf{alta disponibilidad y transparencia de ubicación}, permitiendo que las empresas automaticen flujos de trabajo globales sin tener que gestionar ni una sola GPU física
+    \newline
+    \item \textbf{Despliegue de Tutores Virtuales con vLLM:} Ejemplificando \textbf{PagedAttention}, las instituciones educativas pueden servir modelos LLM a miles de alumnos concurrentes. La tecnología de vLLM permite que instrucciones comunes (ej: las instrucciones de una asignatura) se almacenen una sola vez en la memoria, optimizando el hardware disponible.
+\end{itemize}
+
 \section{Dudas surgidas del estudio (Rol: Preguntador)}
 Durante la realización de este trabajo, han surgido varias preguntas técnicas y éticas que consideramos relevantes para el debate en el seminario académico:
 \begin{itemize}
