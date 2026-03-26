@@ -54,13 +54,13 @@ Este trabajo analiza la integración de la Inteligencia Artificial Generativa (G
 %
 \section{Introducción y motivación del trabajo}
 
-La integración de la IA Generativa en los sistemas distribuidos representa uno de los retos más significativos de la ingeniería informática actual. Tradicionalmente, los sistemas distribuidos se enfocaban en la compartición de recursos y la transparencia de acceso; sin embargo, la escala de los modelos actuales (que alcanzan trillones de parámetros) ha hecho que la computación en un solo dispositivo sea técnica y económicamente inviable.
+La integración de la IA Generativa en sistemas distribuidos es un pilar de la ingeniería informática moderna. Debido a que los modelos actuales alcanzan trillones de parámetros, su computación en dispositivos únicos es técnica y económicamente inviable, exigiendo arquitecturas distribuidas para su despliegue.
 
 \subsection{Motivación técnica}
-La principal motivación de este estudio reside en el fenómeno conocido como el "muro de la memoria". Mientras que el rendimiento de cómputo de las GPUs ha escalado rápidamente, el ancho de banda y la capacidad de la memoria no han seguido el mismo ritmo, convirtiendo a la inferencia de LLMs en una tarea limitada por la memoria (memory-bound). Esto obliga a fragmentar los modelos a través de múltiples nodos utilizando técnicas de paralelismo de tensores, tubería y expertos para poder ejecutarlos en tiempo real con latencias aceptables para aplicaciones interactivas.
+El "muro de la memoria" es el principal motor de este estudio. Ante el desfase entre la capacidad de cómputo de las GPUs y el ancho de banda de su memoria, la inferencia de LLMs se ha vuelto una tarea \textit{memory-bound}. Esto obliga a fragmentar los modelos mediante paralelismo de tensores y tuberías para operar en tiempo real con latencias aceptables.
 
 \subsection{Motivación académica}
-Desde una perspectiva académica, este trabajo se motiva por la necesidad de formar equipos analíticos capaces de gestionar la complejidad de estas arquitecturas bajo estrictos estándares éticos. El auge de la "Edge AI" (IA en el borde) añade una capa adicional de relevancia, ya que la sociedad demanda respuestas instantáneas y mayor privacidad, lo que solo puede lograrse mediante una colaboración eficiente entre dispositivos de usuario y servidores en la nube sin exponer datos sensibles. La soberanía digital, especialmente en el contexto europeo, impulsa la investigación hacia soluciones abiertas y transparentes que no dependan exclusivamente de proveedores propietarios.
+Académicamente, este trabajo responde a la necesidad de gestionar arquitecturas complejas bajo estándares éticos. El auge de la \textit{Edge AI} y la demanda de soberanía digital impulsan la investigación hacia soluciones colaborativas que garanticen respuestas instantáneas y privacidad, evitando la dependencia exclusiva de proveedores propietarios.
 
 \subsection{Roles de los participantes}
 En este trabajo, cada miembro del equipo asume un rol específico para garantizar una visión integral del tema:
@@ -134,44 +134,75 @@ Durante la realización de este trabajo, han surgido varias preguntas técnicas 
 \end{itemize}
 
 \section{Conclusión (Rol: Resumidor)}
+La integración de la IA Generativa en sistemas distribuidos es ya una necesidad arquitectónica para superar el "muro de la memoria". Esta descentralización permite alcanzar una escalabilidad horizontal extrema y optimizar recursos mediante técnicas como PagedAttention y el Aprendizaje Federado, garantizando la privacidad y viabilidad de modelos masivos que serían inmanejables en dispositivos únicos.
+
+Sin embargo, este enfoque traslada el cuello de botella del procesamiento a la red, enfrentando desafíos críticos de latencia, heterogeneidad de nodos y las limitaciones del Teorema CAP. En definitiva, el éxito de la GenAI no dependerá solo del modelo, sino de la creación de infraestructuras distribuidas que logren armonizar la eficiencia técnica con la seguridad y la soberanía del dato.
+
+\section{Auto-evaluaciones}
+
+\subsection{Auto-evaluación general}
+
+Como equipo, consideramos que hemos sido capaces de profundizar bastante en el tópico sobre la integración de la IA Generativa en sistemas distribuidos, adquiriendo conocimientos sobre escalabilidad, Aprendizaje Federado, los retos del Teorema CAP, entre otras. Esta investigación nos ha llevado a analizar tanto ventajas técnicas como riesgos prácticos y éticos, además de investigar sobre casos reales de la industria, consolidando así nuestra capacidad de síntesis y colaboración para comprender y proyectar el tema propuesto de manera clara y rigurosa.
+
+\subsection{Auto-evaluación Proponente (Julian Carrión Tovar)}
+
+Como responsable de defender la utilidad y las ventajas de integrar la IA Generativa en sistemas distribuidos, mi labor ha consistido en demostrar que esta convergencia no es un capricho técnico, sino una necesidad para lograr modelos verdaderamente escalables y seguros. He defendido la integración de la GenAI no como un capricho técnico, sino como una necesidad para lograr modelos escalables y seguros. He analizado cómo el paralelismo de datos y la escalabilidad horizontal habilitan modelos masivos, proponiendo el uso de \textit{PagedAttention} y el Aprendizaje Federado para optimizar recursos y proteger la privacidad en sectores críticos. Mi meta es demostrar que el diseño distribuido es la única vía para que la IA sea eficiente, resiliente y transparente para el usuario final.
+
+\subsection{Auto-evaluación Crítico (Minerva Cebrián Marín)}
+
+Como responsable de estudiar los problemas y los riesgos que trae la opción de integrar la IA generativa en sistemas distribuidos, comparo las expectativas de mayor eficiencia con las realidades, tanto técnicas como teóricas. Considero conceptos como el Teorema de CAP y los modelos de seguridad de Coulouris, para hallar vulnerabilidades significativas, como las implicaciones de la latencia en la sobrecarga de comunicación o los envenenamientos de datos en un entorno federado. Mi objetivo es que al analizar estos riesgos, se tengan en cuenta a la hora de la implementación, para así evitarlos o abordarlos de manera efectiva.
+
+\subsection{Auto-evaluación Proporcionador de ejemplos (David Bacas Posadas)}
+
+Como responsable de analizar los casos de uso reales y las ventajas competitivas de la IA Generativa en arquitecturas distribuidas, mi labor consistió en demostrar cómo la teoría se traduce en soluciones tangibles y seguras. He examinado casos como el Aprendizaje Federado en T-Systems y arquitecturas RAG para probar que el uso de orquestadores (\textit{Kubernetes/Ray}) y técnicas de optimización democratizan el acceso a modelos masivos. Mi enfoque confirma que los sistemas distribuidos son el motor esencial para que la IA sea hoy una herramienta escalable, privada y útil en sectores como la salud, la educación y la industria tecnológica.
+
+\subsection{Auto-evaluación Preguntador (Miguel Ángel Luque Gómez)}
+
+Como encargado de diseñar las preguntas, he tenido que analizar críticamente los retos que supone la integración de la IA Generativa en arquitecturas de sistemas distribuidos. Mi labor principal ha consistido en identificar los dilemas técnicos y éticos más relevantes de nuestra investigación. Considero que las cuestiones planteadas van más allá de la simple teoría, fomentando un debate crítico que permitirá a cualquier asistente del seminario comprender las implicaciones reales, ventajas e inconvenientes de desplegar estos modelos masivos en el mundo real."
+
+\subsection{Auto-evaluación Resumidor (Pablo Hernández Ibáñez)}
+
+Como responsable de la preparación del documento final, mi labor ha consistido en consolidar toda la información aportada por mis compañeros,asegurando que cada sección completase un resultado global coherente y comprensible. Me encargué de implementar las distintas secciones así como de redactar una conclusión final, integrando los conocimientos sobre IA Generativa en sistemas distribuidos y reflejando ventajas y retos de sus aplicaciones.
+
+Considero que todos los integrantes han participado de manera activa y que el intercambio de conocimientos fue constante; siendo mi labor la de canalizar estas aportaciones y presentarlas de manera clara, transmitiendo una versión completa sobre el tópico y el Aprendizaje Federado, mostrando cómo permiten escalar, proteger y optimizar los modelos de IA en entornos reales.
+
+
+
 \begin{thebibliography}{9}
-
-\bibitem{ref_book1}
-Coulouris, G., Dollimore, J., Kindberg, T., Blair, G.: Distributed Systems: Concepts and Design. 5th edn. Addison-Wesley, Boston (2011)
-
-\bibitem{ref_article1}
-Kwon, W., et al.\: vLLM\: An Efficient Inference Engine for Large Language Models. Technical Report No. UCB/EECS-2025-192, University of California, Berkeley (2025)
-
-\bibitem{ref_article2}
-Author, F.: Serving LLM in Distributed GPU Cluster With Fine-Grain Pipeline Constraints. IEEE Transactions on Services Computing \textbf{18}(5), (2025). \url{https://www.computer.org/csdl/journal/sc/2025/05/11143904/29yj42wwNwY}, last accessed 2026/03/24
-
-\bibitem{ref_url1}
-Red Hat Developer: Why vLLM is the best choice for AI inference today, \url{https://developers.redhat.com/articles/2025/10/30/why-vllm-best-choice-ai-inference-today}, last accessed 2026/03/24
-
-\bibitem{ref_url2}
-Meta Intelligence: Private LLM Deployment Guide: Llama + vLLM + TensorRT — Self-Hosted Architecture, \url{https://www.meta-intelligence.tech/en/insight-llm-deployment}, last accessed 2026/03/24
-
-\bibitem{ref_proc1}
-Author, A.-B.: Federated Attention: A Distributed Paradigm for Collaborative LLM Inference over Edge Networks. In: ResearchGate (2025). \url{https://www.researchgate.net/publication/397279786}, last accessed 2026/03/24
-
-\bibitem{ref_url3}
-Solo.io: Deep Dive into llm-d and Distributed Inference, \url{https://www.solo.io/blog/deep-dive-into-llm-d-and-distributed-inference}, last accessed 2026/03/24
-
-\bibitem{ref_url4}
-Hugging Face: Daily Papers \- Hybrid Serving Architecture, \url{https://huggingface.co/papers?q=hybrid%20serving%20architecture}, last accessed 2026/03/24
-
-\bibitem{ref_proc2}
-Author, F.: Performance Modeling and Workload Analysis of Distributed Large Language Model Training and Inference. In: ResearchGate (2025). \url{https://www.researchgate.net/publication/387919319}, last accessed 2026/03/24
-
-\bibitem{ref_url5}
-T-Systems: AI Foundation Services, \url{https://www.t-systems.com/de/en/artificial-intelligence/solutions/ai-foundation-services}, last accessed 2026/03/24
-
-\bibitem{ref_coulouris1}
-Coulouris, G., Dollimore, J., Kindberg, T., Blair, G.: Distributed Systems: Concepts and Design. 5th edn. Pearson Education, Boston (2012)
-
-\bibitem{ref_gilbert1}
-Gilbert, S., Lynch, N.: Brewer's conjecture and the feasibility of consistent, available, partition-tolerant web services. ACM SIGACT News \textbf{33}(2), 51--59 (2002)
-
+	
+	\bibitem{}
+	Coulouris, G., Dollimore, J., Kindberg, T., \& Blair, G. (2011). \textit{Distributed systems: Concepts and design} (5th ed.). Addison-Wesley.
+	
+	\bibitem{}
+	Kwon, W., et al. (2025). \textit{vLLM: An efficient inference engine for large language models} (Technical Report No. UCB/EECS-2025-192). University of California, Berkeley.
+	
+	\bibitem{}
+	Author, F. (2025). Serving LLM in distributed GPU cluster with fine-grain pipeline constraints. \textit{IEEE Transactions on Services Computing, 18}(5). \href{https://www.computer.org/csdl/journal/sc/2025/05/11143904/29yj42wwNwY}{https://www.computer.org/csdl/journal/sc/2025/05/11143904/29yj42wwNwY}
+	
+	\bibitem{}
+	Red Hat Developer. (2025). Why vLLM is the best choice for AI inference today. \href{https://developers.redhat.com/articles/2025/10/30/why-vllm-best-choice-ai-inference-today}{https://developers.redhat.com/articles/2025/10/30/why-vllm-best-choice-ai-inference-today}
+	
+	\bibitem{}
+	Meta Intelligence. (2025). Private LLM deployment guide: Llama + vLLM + TensorRT—Self-hosted architecture. \href{https://www.meta-intelligence.tech/en/insight-llm-deployment}{https://www.meta-intelligence.tech/en/insight-llm-deployment}
+	
+	\bibitem{}
+	Author, A.-B. (2025). Federated attention: A distributed paradigm for collaborative LLM inference over edge networks. ResearchGate. \href{https://www.researchgate.net/publication/397279786}{https://www.researchgate.net/publication/397279786}
+	
+	\bibitem{}
+	Solo.io. (2025). Deep dive into llm-d and distributed inference. \href{https://www.solo.io/blog/deep-dive-into-llm-d-and-distributed-inference}{https://www.solo.io/blog/deep-dive-into-llm-d-and-distributed-inference}
+	
+	\bibitem{}
+	Author, F. (2025). Performance modeling and workload analysis of distributed large language model training and inference. ResearchGate. \href{https://www.researchgate.net/publication/387919319}{https://www.researchgate.net/publication/387919319}
+	
+	\bibitem{}
+	T-Systems. (2025). AI foundation services. \href{https://www.t-systems.com/de/en/artificial-intelligence/solutions/ai-foundation-services}{https://www.t-systems.com/de/en/artificial-intelligence/solutions/ai-foundation-services}
+	
+	\bibitem{}
+	Coulouris, G., Dollimore, J., Kindberg, T., \& Blair, G. (2012). \textit{Distributed systems: Concepts and design} (5th ed.). Pearson Education.
+	
+	\bibitem{}
+	Gilbert, S., \& Lynch, N. (2002). Brewer's conjecture and the feasibility of consistent, available, partition-tolerant web services. \textit{ACM SIGACT News, 33}(2), 51--59.
+	
 \end{thebibliography}
 
 \end{document}
